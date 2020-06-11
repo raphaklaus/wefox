@@ -1,0 +1,18 @@
+version: "3"
+services:
+  server:
+    build: .
+    command: npm start
+    volumes:
+      - ./server:/usr/src/app
+    ports:
+      - 8000:8000
+  scheduler:
+    build: .
+    command: npm start
+    volumes:
+      - ./scheduler:/usr/src/app
+  mongodb:
+    image: mongo:latest
+  redis:
+    image: redis:6.0-alpine

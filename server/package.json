@@ -1,0 +1,17 @@
+{
+  "name": "wefox",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --experimental-modules server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raphael D. Pinheiro",
+  "license": "MIT",
+  "dependencies": {
+    "eslint": "^7.2.0",
+    "express": "^4.17.1"
+  }
+}
