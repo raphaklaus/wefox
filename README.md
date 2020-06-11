@@ -1,5 +1,7 @@
 # Wefox Code Challenge
 
+![CI](https://github.com/raphaklaus/wefox/workflows/Node.js%20CI/badge.svg?event=push)
+
 The solution is 100% dockerized. Here it is a summary of the commands:
 
 ## Running
