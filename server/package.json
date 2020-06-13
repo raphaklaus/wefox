@@ -5,13 +5,22 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node --experimental-modules src/server.js",
-    "test": "echo \"No tests... Yet!\" && exit 0"
+    "start": "env-cmd node --harmony-top-level-await --experimental-modules src/server.js",
+    "test": "mocha"
   },
   "author": "Raphael D. Pinheiro",
   "license": "MIT",
   "dependencies": {
-    "eslint": "^7.2.0",
-    "express": "^4.17.1"
+    "@googlemaps/google-maps-services-js": "^3.1.0",
+    "body-parser": "^1.19.0",
+    "env-cmd": "^10.1.0",
+    "express": "^4.17.1",
+    "node-geocoder": "^3.27.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "eslint": "^4.19.1",
+    "eslint-plugin-babel": "^5.3.0",
+    "mocha": "^8.0.1"
   }
 }
