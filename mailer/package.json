@@ -1,0 +1,17 @@
+{
+  "name": "mailer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mailer.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --harmony-top-level-await --experimental-modules src/mailer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raphael D. Pinheiro",
+  "license": "MIT",
+  "dependencies": {
+    "rsmq-promise": "^1.0.4",
+    "rsmq-worker": "^0.5.2"
+  }
+}

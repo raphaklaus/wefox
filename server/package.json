@@ -5,7 +5,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node --experimental-modules server.js",
+    "start": "node --experimental-modules src/server.js",
     "test": "echo \"No tests... Yet!\" && exit 0"
   },
   "author": "Raphael D. Pinheiro",
