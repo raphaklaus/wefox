@@ -6,11 +6,9 @@ export default (mapsRes) => {
   )
 }
 
-const hasLatLog = (mapsRes) => {
-  return ['latitude', 'longitude'].every(property => {
-    return Object.keys(mapsRes).includes(property)
-  })
-}
+const hasLatLog = (mapsRes) =>
+  ['latitude', 'longitude'].every(property =>
+    Object.keys(mapsRes).includes(property))
 
 const hasGreatConfidence = (mapsRes) => {
   return mapsRes.extra?.confidence > 0.8
