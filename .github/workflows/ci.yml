@@ -12,9 +12,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.4.0"
-      # - run: npm install
-      - run: npm test
-        working-directory: ./server
+      - run: |
+          cd server
+          npm install
+          npm test
 
   scheduler:
     runs-on: ubuntu-latest
@@ -25,9 +26,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.4.0"
-      # - run: npm install
-      - run: npm test
-        working-directory: ./scheduler
+      - run: |
+          cd scheduler
+          npm install
+          npm test
 
   mailer:
     runs-on: ubuntu-latest
@@ -38,6 +40,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.4.0"
-      # - run: npm install
-      - run: npm test
-        working-directory: ./scheduler
+      - run: |
+          cd mailer
+          npm install
+          npm test
