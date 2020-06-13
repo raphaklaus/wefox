@@ -12,7 +12,14 @@ services:
     command: npm start
     volumes:
       - ./scheduler:/usr/src/app
+  mailer:
+    build: .
+    command: npm start
+    volumes:
+      - ./mailer:/usr/src/app
   mongodb:
     image: mongo:latest
   redis:
     image: redis:6.0-alpine
+    ports:
+      - "6379:6379"
