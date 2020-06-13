@@ -11,7 +11,7 @@ jobs:
       - name: Test
         uses: actions/setup-node@v1
         with:
-          node-version: "12.18"
+          node-version: "14.4.0"
       # - run: npm install
       - run: npm test
         working-directory: ./server
@@ -24,7 +24,7 @@ jobs:
       - name: Test
         uses: actions/setup-node@v1
         with:
-          node-version: "12.18"
+          node-version: "14.4.0"
       # - run: npm install
       - run: npm test
         working-directory: ./scheduler
