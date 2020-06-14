@@ -1,10 +1,16 @@
 import googleMaps from '../services/googleMaps.js'
+import mapsValidation from '../services/mapsValidation.js'
+import weather from '../services/openWeather.js'
 
 export const isValid = async (req, res) => {
-  // const _mapsRes = await googleMaps(req.body)
-  return res.json(await googleMaps(req.body))
+  const mapsRespose = await googleMaps(req.body)
+  return res.json({
+    valid: mapsValidation(mapsRespose)
+  })
 }
 
-export const getWeather = (req, res) => {
-  res.send('weather seems kinda strange...')
+export const getWeather = async (req, res) => {
+  const { latitude, longitude } = await googleMaps(req.body)
+
+  return res.json(await weather(latitude, longitude))
 }
