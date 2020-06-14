@@ -12,6 +12,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.4.0"
+        env:
+          AUTH_KEY: ${{ secrets.AUTH_KEY }}
       - run: |
           cd server
           npm install
