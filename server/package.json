@@ -6,7 +6,7 @@
   "main": "server.js",
   "scripts": {
     "start": "env-cmd node --harmony-top-level-await --experimental-modules src/server.js",
-    "test": "env-cmd mocha",
+    "test": "env-cmd --silent mocha",
     "lint": "standard"
   },
   "author": "Raphael D. Pinheiro",
