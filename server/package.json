@@ -6,7 +6,8 @@
   "main": "server.js",
   "scripts": {
     "start": "env-cmd node --harmony-top-level-await --experimental-modules src/server.js",
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "standard"
   },
   "author": "Raphael D. Pinheiro",
   "license": "MIT",
@@ -15,12 +16,20 @@
     "body-parser": "^1.19.0",
     "env-cmd": "^10.1.0",
     "express": "^4.17.1",
-    "node-geocoder": "^3.27.0"
+    "mongoose": "^5.9.18",
+    "node-geocoder": "^3.27.0",
+    "openweather-apis": "^4.3.1"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.6",
+    "@babel/core": "^7.10.2",
+    "babel-eslint": "^11.0.0-beta.0",
     "eslint": "^4.19.1",
     "eslint-plugin-babel": "^5.3.0",
-    "mocha": "^8.0.1"
+    "mocha": "^8.0.1",
+    "standard": "^14.3.4"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "envs": ["mocha"]
   }
 }
