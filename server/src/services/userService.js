@@ -1,11 +1,11 @@
 import UserModel from '../models/userModel.js'
 
 const create = ({
-  username,
+  email,
   password
 }) => {
   const document = new UserModel({
-    username,
+    email,
     password
   })
 
@@ -13,10 +13,10 @@ const create = ({
 }
 
 const checkCredentials = async ({
-  username,
+  email,
   password
 }) => {
-  const user = await UserModel.findOne({ username })
+  const user = await UserModel.findOne({ email })
 
   return {
     isAllowed: user.checkPassword(password),

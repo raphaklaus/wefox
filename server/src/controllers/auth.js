@@ -6,9 +6,9 @@ import {
 } from '../services/tokenService.js'
 
 export const register = async (req, res, next) => {
-  const { username, password } = req.body
+  const { email, password } = req.body
   try {
-    await userService.create({ username, password })
+    await userService.create({ email, password })
     return res.status(201).json({
       message: 'User created.'
     })
@@ -19,13 +19,13 @@ export const register = async (req, res, next) => {
 
 // TODO: create catch-all error middleware
 export const login = async (req, res, next) => {
-  const { username, password } = req.body
+  const { email, password } = req.body
   try {
     const {
       isAllowed,
       userId
     } = await userService.checkCredentials({
-      username,
+      email,
       password
     })
 

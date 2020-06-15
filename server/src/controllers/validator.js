@@ -17,6 +17,6 @@ const validate = validations => {
 }
 
 export const authValidator = validate([
-  validator.check('username').exists(),
+  validator.check('email').exists(),
   validator.check('password').exists()
 ])
