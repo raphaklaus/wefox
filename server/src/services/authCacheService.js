@@ -12,7 +12,9 @@ export const set = async ({ userId, accessToken }) => {
 }
 
 export const get = async ({ userId }) => {
-  await getAsync(`auth_${userId}`)
+  console.log(`auth_${userId}`);
+
+  return getAsync(`auth_${userId}`)
 }
 
 export const unset = async ({ userId }) => {

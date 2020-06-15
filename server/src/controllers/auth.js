@@ -1,5 +1,5 @@
 import userService from '../services/userService.js'
-import { set as cacheSet, unset as cacheUnset } from '../services/authCacheService.js'
+import { get as cacheGet, set as cacheSet, unset as cacheUnset } from '../services/authCacheService.js'
 import {
   tokenGenerator,
   tokenDecrypt
@@ -34,7 +34,7 @@ export const login = async (req, res) => {
     })
 
     if (isAllowed) {
-      const accessToken = tokenGenerator()
+      const accessToken = tokenGenerator({userId})
 
       await cacheSet({ userId, accessToken })
       return res.status(202).json({
@@ -68,4 +68,23 @@ export const logout = async (req, res) => {
       error: `Something went wrong. Error: ${error.message}`
     })
   }
+}
+
+export const isAuthenticated = async (req, res, next) => {
+  const {
+    userId
+  } = tokenDecrypt(req.get('Access-Token'))
+
+  console.log(await cacheGet({
+    userId
+  }));
+
+
+  if (await cacheGet({userId})) {
+    return next()
+  }
+
+  return res.status(401).json({
+    message: 'You must be authenticated to access this resource'
+  })
 }

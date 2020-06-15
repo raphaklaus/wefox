@@ -20,8 +20,8 @@ describe('Token generation', () => {
   })
 
   it('should be data-reversible', () => {
-    assert.deepEqual(
-      tokenDecrypt(tokenGenerator(1)),
+    assert.deepStrictEqual(
+      tokenDecrypt(tokenGenerator({userId: 1})),
       {userId: 1}
     )
   })
