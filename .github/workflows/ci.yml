@@ -15,6 +15,7 @@ jobs:
       - run: |
           cd server
           npm install
+          npm run lint
           npm test
         env:
           AUTH_KEY: ${{ secrets.AUTH_KEY }}
@@ -31,6 +32,7 @@ jobs:
       - run: |
           cd scheduler
           npm install
+          npm run lint
           npm test
 
   mailer:
@@ -45,4 +47,4 @@ jobs:
       - run: |
           cd mailer
           npm install
-          npm test
+          npm run lint
