@@ -3,11 +3,12 @@ import crypto from 'crypto'
 const algorithm = 'aes256'
 const key = Buffer.from(process.env.AUTH_KEY)
 
-export const tokenGenerator = ({ userId }) => {
+export const tokenGenerator = ({ userId, email }) => {
   const salt = crypto.randomBytes(16)
-  const content = JSON.stringify({ userId })
-  // console.log('content!!')
-  // console.log(content)
+  const content = JSON.stringify({
+    userId,
+    email
+  })
 
   const cipher = crypto.createCipheriv(algorithm, key, salt)
 

@@ -1,10 +1,10 @@
 import RequestLog from '../models/requestLogsModel.js'
 
-const create = () => {
+const create = ({ lat, long, userId }) => {
   const document = new RequestLog({
-    lat: 1,
-    long: 1,
-    requesterEmail: 'wow@wow.com'
+    lat,
+    long,
+    user: userId
   })
 
   return document.save()

@@ -30,7 +30,10 @@ export const login = async (req, res, next) => {
     })
 
     if (isAllowed) {
-      const accessToken = tokenGenerator({ userId })
+      const accessToken = tokenGenerator({
+        userId,
+        email
+      })
 
       await cacheSet({ userId, accessToken })
       return res.status(202).json({

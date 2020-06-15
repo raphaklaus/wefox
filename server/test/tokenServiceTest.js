@@ -21,8 +21,11 @@ describe('Token generation', () => {
 
   it('should be data-reversible', () => {
     assert.deepStrictEqual(
-      tokenDecrypt(tokenGenerator({ userId: 1 })),
-      { userId: 1 }
+      tokenDecrypt(tokenGenerator({ userId: 1, email: 'john@sample' })),
+      {
+        userId: 1,
+        email: 'john@sample'
+      }
     )
   })
 })
