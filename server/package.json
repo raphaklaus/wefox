@@ -1,42 +1,37 @@
 {
-  "name": "wefox",
-  "version": "1.0.0",
-  "description": "",
-  "type": "module",
-  "main": "server.js",
-  "scripts": {
-    "start": "env-cmd node --harmony-top-level-await --experimental-modules src/server.js",
-    "test": "env-cmd --silent mocha",
-    "lint": "standard"
-  },
-  "author": "Raphael D. Pinheiro",
-  "license": "MIT",
-  "dependencies": {
-    "@googlemaps/google-maps-services-js": "^3.1.0",
-    "apicache": "^1.5.3",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "env-cmd": "^10.1.0",
-    "express": "^4.17.1",
-    "express-validator": "^6.5.0",
-    "mongoose": "^5.9.18",
-    "mongoose-unique-validator": "^2.0.3",
-    "node-geocoder": "^3.27.0",
-    "openweather-apis": "^4.3.1",
-    "redis": "^3.0.2"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "babel-eslint": "^11.0.0-beta.0",
-    "eslint": "^7.2.0",
-    "eslint-plugin-babel": "^5.3.0",
-    "mocha": "^8.0.1",
-    "standard": "^14.3.4"
-  },
-  "standard": {
-    "parser": "babel-eslint",
-    "envs": [
-      "mocha"
-    ]
-  }
+	"name": "wefox",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
+	"main": "server.js",
+	"scripts": {
+		"start": "env-cmd node --harmony-top-level-await --experimental-modules src/server.js",
+		"test": "env-cmd --silent mocha",
+		"lint": "standard"
+	},
+	"author": "Raphael D. Pinheiro",
+	"license": "MIT",
+	"dependencies": {
+		"@googlemaps/google-maps-services-js": "^3.1.0",
+		"apicache": "^1.5.3",
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.19.0",
+		"env-cmd": "^10.1.0",
+		"express": "^4.17.1",
+		"express-validator": "^6.5.0",
+		"mongoose": "^5.9.18",
+		"mongoose-unique-validator": "^2.0.3",
+		"node-geocoder": "^3.27.0",
+		"openweather-apis": "^4.3.1",
+		"redis": "^3.0.2"
+	},
+	"devDependencies": {
+		"mocha": "^8.0.1",
+		"standard": "^14.3.4"
+	},
+	"standard": {
+		"envs": [
+			"mocha"
+		]
+	}
 }

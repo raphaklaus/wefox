@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 import mongo from './mongo.js'
 import cache from './cache.js'
 
-await mongo()
+mongo()
 
 const app = express()
 app.use(bodyParser.json())

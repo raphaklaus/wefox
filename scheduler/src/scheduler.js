@@ -6,7 +6,7 @@ import mongo from './mongo.js'
 
 const rsmq = new RSMQPromise({
   host: process.env.REDIS_HOST || 'redis',
-  port: parseInt(process.env.REDIS_PORT || '6379'),
+  port: parseInt(process.env.REDIS_PORT || '6379')
 })
 
 const agenda = new Agenda({
@@ -18,8 +18,6 @@ const agenda = new Agenda({
   }
 })
 
-await mongo()
-
 agenda.define('check previous addresses queried', async job => {
   try {
     const requestLogs = await requestLogService.getAll()
@@ -28,24 +26,24 @@ agenda.define('check previous addresses queried', async job => {
     requestLogs.forEach(async requestLog => {
       const weather = await getWeather(requestLog.lat, requestLog.long)
 
-      if (true) {
+      if (isPrecipitating(weather)) {
         const payload = {
           email: requestLog.user.email,
           message: 'You queried this place before, so we think would be nice for ' +
           `you to know that ${requestLog.place} is now having ${weather.description}`
         }
 
-        const res = await rsmq.sendMessage({
+        await rsmq.sendMessage({
           qname: 'mailer',
           message: JSON.stringify(payload)
         })
       }
     })
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 })
 
-await agenda.start()
-
-await agenda.every(process.env.SCHEDULE, 'check previous addresses queried')
+mongo()
+  .then(() => agenda.start)
+  .then(() => agenda.every(process.env.SCHEDULE, 'check previous addresses queried'))
