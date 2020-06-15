@@ -27,9 +27,5 @@ services:
       - redis
   mongo:
     image: mongo:latest
-    ports:
-      - 27017:27017
   redis:
     image: redis:6.0-alpine
-    ports:
-      - "6379:6379"
