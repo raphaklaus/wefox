@@ -2,7 +2,7 @@ import validator from 'express-validator'
 
 const validate = validations => {
   return async (req, res, next) => {
-    await Promise.all(validations.map(validation => validation.run(req)));
+    await Promise.all(validations.map(validation => validation.run(req)))
 
     const errors = validator.validationResult(req)
 
@@ -12,11 +12,11 @@ const validate = validations => {
 
     return res.status(422).json({
       errors: errors.array()
-    });
-  };
-};
+    })
+  }
+}
 
-export const loginValidator = validate([
-    validator.check('username').exists(),
-    validator.check('password').exists()
-  ])
+export const authValidator = validate([
+  validator.check('username').exists(),
+  validator.check('password').exists()
+])

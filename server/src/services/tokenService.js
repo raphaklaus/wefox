@@ -3,7 +3,7 @@ import crypto from 'crypto'
 const algorithm = 'aes256'
 const key = Buffer.from(process.env.AUTH_KEY)
 
-export const tokenGenerator = ({userId}) => {
+export const tokenGenerator = ({ userId }) => {
   const salt = crypto.randomBytes(16)
   const content = JSON.stringify({ userId })
   // console.log('content!!')
@@ -25,6 +25,6 @@ export const tokenDecrypt = (accessToken) => {
 
     return JSON.parse(decipher.update(encryptedData, 'hex', 'utf8') + decipher.final('utf-8'))
   } catch (error) {
-    return {userId: undefined}
+    return { userId: undefined }
   }
 }

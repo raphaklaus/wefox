@@ -12,7 +12,7 @@ export const set = async ({ userId, accessToken }) => {
 }
 
 export const get = async ({ userId }) => {
-  console.log(`auth_${userId}`);
+  console.log(`auth_${userId}`)
 
   return getAsync(`auth_${userId}`)
 }

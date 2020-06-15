@@ -5,8 +5,7 @@ import {
   tokenDecrypt
 } from '../services/tokenService.js'
 
-// TODO: Validations (request body keys existance, etc...)
-export const register = async (req, res) => {
+export const register = async (req, res, next) => {
   const { username, password } = req.body
   try {
     await userService.create({ username, password })
@@ -14,15 +13,12 @@ export const register = async (req, res) => {
       message: 'User created.'
     })
   } catch (error) {
-    console.error(error)
-    return res.status(500).json({
-      error: `Something went wrong. Error: ${error.message}`
-    })
+    next(error)
   }
 }
 
 // TODO: create catch-all error middleware
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
   const { username, password } = req.body
   try {
     const {
@@ -34,7 +30,7 @@ export const login = async (req, res) => {
     })
 
     if (isAllowed) {
-      const accessToken = tokenGenerator({userId})
+      const accessToken = tokenGenerator({ userId })
 
       await cacheSet({ userId, accessToken })
       return res.status(202).json({
@@ -42,31 +38,24 @@ export const login = async (req, res) => {
       })
     }
 
-    // review status code
-    return res.status(401).json({
+    return res.status(418).json({
       message: 'Your credentials don\'t match'
     })
   } catch (error) {
-    console.error(error)
-    return res.status(500).json({
-      error: `Something went wrong. Error: ${error.message}`
-    })
+    next(error)
   }
 }
 
 // TODO: create catch-all error middleware
-export const logout = async (req, res) => {
+export const logout = async (req, res, next) => {
   try {
-    const {userId} = tokenDecrypt(req.get('Access-Token'))
-    await cacheUnset({userId})
+    const { userId } = tokenDecrypt(req.get('Access-Token'))
+    await cacheUnset({ userId })
     return res.status(202).json({
       message: 'You are logged out'
     })
   } catch (error) {
-    console.error(error)
-    return res.status(500).json({
-      error: `Something went wrong. Error: ${error.message}`
-    })
+    next(error)
   }
 }
 
@@ -75,12 +64,7 @@ export const isAuthenticated = async (req, res, next) => {
     userId
   } = tokenDecrypt(req.get('Access-Token'))
 
-  console.log(await cacheGet({
-    userId
-  }));
-
-
-  if (await cacheGet({userId})) {
+  if (await cacheGet({ userId })) {
     return next()
   }
 

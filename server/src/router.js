@@ -10,24 +10,23 @@ import {
   isAuthenticated
 } from './controllers/auth.js'
 
-import { loginValidator } from './controllers/validator.js'
+import { authValidator } from './controllers/validator.js'
 
 export default ({ app, cache }) => {
   // public
-  app.post('/auth/register', register)
-  app.post('/auth/login', loginValidator, login)
+  app.post('/auth/register', authValidator, register)
+  app.post('/auth/login', authValidator, login)
 
-  // under auth...
+  // under authentication
   app.post('/auth/logout', isAuthenticated, logout)
   app.get('/address/is_valid', isAuthenticated, cache, isValid)
   app.get('/address/weather', isAuthenticated, cache, getWeather)
 
-  // app.use((error, req, res, next) => {
-  //   const errors = validationResult(req);
-  //   if (!errors.isEmpty()) {
-  //     return res.status(422).json({
-  //       errors: errors.array()
-  //     });
-  //   }
-  // })
+  // catch-all errors middleware
+  app.use((error, req, res, next) => {
+    console.error(error)
+    return res.status(500).json({
+      message: `Something went wrong. Details: ${error.message}`
+    })
+  })
 }
