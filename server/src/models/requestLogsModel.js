@@ -12,6 +12,10 @@ const requestLogSchema = mongoose.Schema({
     type: Number,
     required: true
   },
+  place: {
+    type: String,
+    required: true
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',

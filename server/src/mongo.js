@@ -1,15 +1,13 @@
 import mongoose from 'mongoose'
 
 export default async () => {
-  console.log(`mongodb://${process.env.MONGO_HOST}/${process.env.DB_NAME}`)
-
   try {
-    await mongoose.connect(`mongodb://${process.env.MONGO_HOST}/${process.env.DB_NAME}`, {
+    await mongoose.connect(`mongodb://${process.env.MONGO_HOST || 'mongo'}/${process.env.DB_NAME || 'wefox'}`, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true
     })
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }

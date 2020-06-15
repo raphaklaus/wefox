@@ -16,6 +16,7 @@ export const isValid = async (req, res, next) => {
     await requestLogService.create({
       lat: mapsResponse.latitude,
       long: mapsResponse.longitude,
+      place: `${mapsResponse.streetName} ${mapsResponse.city}`,
       userId
     })
 

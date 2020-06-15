@@ -1,7 +1,9 @@
 import { promisify } from 'util'
 import redis from 'redis'
 
-const client = redis.createClient()
+const client = redis.createClient({
+  host: process.env.REDIS_HOST
+})
 const getAsync = promisify(client.get).bind(client)
 const setAsync = promisify(client.setex).bind(client)
 const delAsync = promisify(client.del).bind(client)
@@ -12,8 +14,6 @@ export const set = async ({ userId, accessToken }) => {
 }
 
 export const get = async ({ userId }) => {
-  console.log(`auth_${userId}`)
-
   return getAsync(`auth_${userId}`)
 }
 
